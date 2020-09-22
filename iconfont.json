@@ -1,0 +1,7 @@
+{
+  "symbol_url": "//at.alicdn.com/t/font_1353659_o5sijwzyoqh.js",
+  "use_typescript": true,
+  "save_dir": "./app/components/icon",
+  "trim_icon_prefix": "icon",
+  "default_icon_size": 24
+}
