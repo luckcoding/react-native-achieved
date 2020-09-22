@@ -1,0 +1,93 @@
+{
+  "name": "ReactNativeAchieved",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint index.js app --fix --ext .js,.ts,.tsx",
+    "format": "npm-run-all format:*",
+    "format:js": "prettier --write '**/*.js'",
+    "format:json": "prettier --write '**/*.json'",
+    "format:md": "prettier --write '**/*.md'",
+    "format:ts": "prettier --write '**/*.ts{,x}'",
+    "bundle-android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/",
+    "bundle-ios": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ./ios/bundle/index.ios.jsbundle --assets-dest ./ios/bundle",
+    "bundle-android:visualizer": "npx react-native-bundle-visualizer --platform android --dev false --entry-file index.js --bundle-output visualizer/index.android.bundle --assets-dest visualizer/"
+  },
+  "dependencies": {
+    "react": "16.13.1",
+    "react-native": "0.63.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/runtime": "^7.8.4",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@react-native-community/eslint-config": "^1.1.0",
+    "@types/jest": "^25.2.3",
+    "@types/react-native": "^0.63.2",
+    "@types/react-test-renderer": "^16.9.2",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
+    "babel-jest": "^25.1.0",
+    "commitizen": "^4.2.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^6.5.1",
+    "husky": "^4.3.0",
+    "jest": "^25.1.0",
+    "lint-staged": "^10.4.0",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "prettier": "^2.1.2",
+    "react-test-renderer": "16.13.1",
+    "typescript": "^3.8.3"
+  },
+  "jest": {
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -x @commitlint/config-conventional -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.ts{,x}": [
+      "prettier --write",
+      "git add"
+    ],
+    "**/*.js": [
+      "prettier --write",
+      "git add"
+    ],
+    "**/*.json": [
+      "prettier --write",
+      "git add"
+    ],
+    "**/*.md": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
+}
