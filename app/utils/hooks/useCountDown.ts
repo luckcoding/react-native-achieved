@@ -7,7 +7,7 @@ interface UseCountDownOptions {
 }
 
 export function useCountDown(options: UseCountDownOptions = {}) {
-  const intervalRef = useRef<number>();
+  const intervalRef = useRef<NodeJS.Timeout>();
   const [count, setCount] = useState<number>(0);
 
   const defaultDuration = options.duration || 0;

@@ -9,8 +9,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import {
   HomeScreen,
   DetailScreen,
-  CategoryScreen,
-  CartScreen,
   LoginScreen,
   ProfileScreen,
 } from '../screens';
@@ -65,8 +63,6 @@ const TabStack = createBottomTabNavigator<TabParamList>();
 const TabNavigator = () => (
   <TabStack.Navigator>
     <TabStack.Screen name="Home" component={HomeNavigator} />
-    <TabStack.Screen name="Category" component={CategoryScreen} />
-    <TabStack.Screen name="Cart" component={CartScreen} />
     <TabStack.Screen name="Profile" component={ProfileNavigator} />
   </TabStack.Navigator>
 );

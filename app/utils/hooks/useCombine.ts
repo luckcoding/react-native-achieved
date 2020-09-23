@@ -17,7 +17,7 @@ export const useCombine = <F extends IFunction>(
   state: { paramsStack: Parameters<F>[] };
 } => {
   const { duration, params } = options;
-  const timerRef = useRef<number>();
+  const timerRef = useRef<NodeJS.Timeout>();
   const stateRef = useRef<{ paramsStack: Parameters<F>[] }>({
     paramsStack: [],
   });

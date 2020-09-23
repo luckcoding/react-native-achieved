@@ -18,7 +18,8 @@
     "component": "node scripts/template/index.js component",
     "bundle-android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/",
     "bundle-ios": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ./ios/bundle/index.ios.jsbundle --assets-dest ./ios/bundle",
-    "bundle-android:visualizer": "npx react-native-bundle-visualizer --platform android --dev false --entry-file index.js --bundle-output visualizer/index.android.bundle --assets-dest visualizer/"
+    "bundle-android:visualizer": "npx react-native-bundle-visualizer --platform android --dev false --entry-file index.js --bundle-output visualizer/index.android.bundle --assets-dest visualizer/",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.0",
@@ -37,6 +38,7 @@
     "mobx": "^5.15.7",
     "mobx-react-lite": "^2.2.2",
     "mobx-state-tree": "^3.17.2",
+    "patch-package": "^6.2.2",
     "ramda": "^0.27.1",
     "react": "16.13.1",
     "react-hook-form": "^6.8.4",
