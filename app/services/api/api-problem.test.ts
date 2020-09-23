@@ -1,9 +1,9 @@
-import {getGeneralApiProblem} from './api-problem';
-import {ApiErrorResponse} from 'apisauce';
+import { getGeneralApiProblem } from './api-problem';
+import { ApiErrorResponse } from 'apisauce';
 
 test('handles connection errors', () => {
   expect(
-    getGeneralApiProblem({problem: 'CONNECTION_ERROR'} as ApiErrorResponse<
+    getGeneralApiProblem({ problem: 'CONNECTION_ERROR' } as ApiErrorResponse<
       null
     >),
   ).toEqual({
@@ -14,7 +14,9 @@ test('handles connection errors', () => {
 
 test('handles network errors', () => {
   expect(
-    getGeneralApiProblem({problem: 'NETWORK_ERROR'} as ApiErrorResponse<null>),
+    getGeneralApiProblem({ problem: 'NETWORK_ERROR' } as ApiErrorResponse<
+      null
+    >),
   ).toEqual({
     kind: 'cannot-connect',
     temporary: true,
@@ -23,7 +25,9 @@ test('handles network errors', () => {
 
 test('handles timeouts', () => {
   expect(
-    getGeneralApiProblem({problem: 'TIMEOUT_ERROR'} as ApiErrorResponse<null>),
+    getGeneralApiProblem({ problem: 'TIMEOUT_ERROR' } as ApiErrorResponse<
+      null
+    >),
   ).toEqual({
     kind: 'timeout',
     temporary: true,
@@ -32,7 +36,7 @@ test('handles timeouts', () => {
 
 test('handles server errors', () => {
   expect(
-    getGeneralApiProblem({problem: 'SERVER_ERROR'} as ApiErrorResponse<null>),
+    getGeneralApiProblem({ problem: 'SERVER_ERROR' } as ApiErrorResponse<null>),
   ).toEqual({
     kind: 'server',
   });
@@ -40,7 +44,9 @@ test('handles server errors', () => {
 
 test('handles unknown errors', () => {
   expect(
-    getGeneralApiProblem({problem: 'UNKNOWN_ERROR'} as ApiErrorResponse<null>),
+    getGeneralApiProblem({ problem: 'UNKNOWN_ERROR' } as ApiErrorResponse<
+      null
+    >),
   ).toEqual({
     kind: 'unknown',
     temporary: true,
@@ -93,6 +99,6 @@ test('handles other client errors', () => {
 
 test('handles cancellation errors', () => {
   expect(
-    getGeneralApiProblem({problem: 'CANCEL_ERROR'} as ApiErrorResponse<null>),
+    getGeneralApiProblem({ problem: 'CANCEL_ERROR' } as ApiErrorResponse<null>),
   ).toBeNull();
 });

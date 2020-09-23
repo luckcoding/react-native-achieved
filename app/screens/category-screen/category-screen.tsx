@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text} from 'react-native';
-import {Screen} from '../../components';
-import {theme} from '../../theme';
+import { Text } from 'react-native';
+import { Screen } from '../../components';
+import { theme } from '../../theme';
 
 export interface CategoryScreenProps {
   size?: number;
@@ -14,7 +14,7 @@ export const CategoryScreen: React.FC<CategoryScreenProps> = theme(
       fontSize: props.size,
     },
   }),
-  ({styles}) => {
+  ({ styles }) => {
     return (
       <Screen>
         <Text style={styles.text}>CategoryScreen</Text>

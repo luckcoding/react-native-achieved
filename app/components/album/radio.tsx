@@ -1,8 +1,8 @@
-import React, {memo} from 'react';
-import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
-import {createStyled, spacing} from '../../theme';
-import {Text} from '../text/text';
-import {View} from '../view/view';
+import React, { memo } from 'react';
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { createStyled, spacing } from '../../theme';
+import { Text } from '../text/text';
+import { View } from '../view/view';
 
 interface RadioProps extends TouchableOpacityProps {
   selectedIndex?: number;
@@ -34,7 +34,7 @@ const styled = createStyled((props, colors) => ({
 }));
 
 export const Radio: React.FC<RadioProps> = memo((props) => {
-  const {selectedIndex, ...other} = props;
+  const { selectedIndex, ...other } = props;
   const styles = styled(props);
   const isSelected = selectedIndex !== -1;
   return (

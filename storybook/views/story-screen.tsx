@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {KeyboardAvoidingView, Platform} from 'react-native';
+import { KeyboardAvoidingView, Platform } from 'react-native';
 
 export interface StoryScreenProps {
   children?: React.ReactNode;
@@ -8,9 +8,10 @@ export interface StoryScreenProps {
 const behavior = Platform.OS === 'ios' ? 'padding' : null;
 export const StoryScreen = (props) => (
   <KeyboardAvoidingView
-    style={{flex: 1}}
+    style={{ flex: 1 }}
     behavior={behavior}
-    keyboardVerticalOffset={50}>
+    keyboardVerticalOffset={50}
+  >
     {props.children}
   </KeyboardAvoidingView>
 );

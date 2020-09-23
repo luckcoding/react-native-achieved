@@ -1,5 +1,5 @@
-import React, {ReactNode, RefObject} from 'react';
-import {ViewStyle, StyleProp} from 'react-native';
+import React, { ReactNode, RefObject } from 'react';
+import { ViewStyle, StyleProp } from 'react-native';
 
 export interface DropdownProps {
   duration?: number;

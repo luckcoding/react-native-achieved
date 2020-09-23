@@ -1,4 +1,4 @@
-import {ViewProps} from 'react-native';
+import { ViewProps } from 'react-native';
 
 export interface CountdownProps extends ViewProps {
   duration: number;

@@ -1,4 +1,4 @@
-import {TextProperties} from 'react-native';
+import { TextProperties } from 'react-native';
 import {
   TypographyModifiers,
   ColorsModifiers,

@@ -1,16 +1,16 @@
-import React, {useEffect, useRef} from 'react';
-import {CountdownProps} from './countdown.props';
-import {styled} from './countdown.styles';
-import {useCountDown} from '../../utils/hooks';
-import {load} from '../../utils/storage';
-import {Text} from '../text/text';
-import {Touchable} from '../touchable/touchable';
+import React, { useEffect, useRef } from 'react';
+import { CountdownProps } from './countdown.props';
+import { styled } from './countdown.styles';
+import { useCountDown } from '../../utils/hooks';
+import { load } from '../../utils/storage';
+import { Text } from '../text/text';
+import { Touchable } from '../touchable/touchable';
 
 const named = (name = '') => `@@countdown_${name}`;
 
 export const Countdown: React.FC<CountdownProps> = (props) => {
   const styles = styled(props);
-  const {duration = 30, name, text, nextText, disabled = false} = props;
+  const { duration = 30, name, text, nextText, disabled = false } = props;
 
   const nextRef = useRef<boolean>(false);
 
@@ -21,7 +21,7 @@ export const Countdown: React.FC<CountdownProps> = (props) => {
     return nextCount;
   };
 
-  const {count, start} = useCountDown({duration, onBeforeChange});
+  const { count, start } = useCountDown({ duration, onBeforeChange });
 
   const isDisabled = disabled || !!count;
 

@@ -1,4 +1,4 @@
-import {StyleProp, StyleSheet, UIManager} from 'react-native';
+import { StyleProp, StyleSheet, UIManager } from 'react-native';
 
 export const objectCore = Object.prototype.toString;
 
@@ -37,6 +37,6 @@ export const measure = (
 }> =>
   new Promise((resolve) => {
     UIManager.measure(node, (x, y, width, height, pageX, pageY) => {
-      resolve({x, y, width, height, pageX, pageY});
+      resolve({ x, y, width, height, pageX, pageY });
     });
   });

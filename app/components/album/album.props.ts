@@ -1,4 +1,4 @@
-import {AssetType, Include} from '@react-native-community/cameraroll';
+import { AssetType, Include } from '@react-native-community/cameraroll';
 
 export interface AlbumProps {
   initialSelected?: string[];

@@ -1,9 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import React, {FunctionComponent} from 'react';
-import {ViewProps} from 'react-native';
-import {GProps} from 'react-native-svg';
+import React, { FunctionComponent } from 'react';
+import { ViewProps } from 'react-native';
+import { GProps } from 'react-native-svg';
 import IconAccessory from './IconAccessory';
 import IconActivity from './IconActivity';
 import IconActivityFill from './IconActivityFill';
@@ -361,7 +361,7 @@ interface Props extends GProps, ViewProps {
   color?: string | string[];
 }
 
-const IconFont: FunctionComponent<Props> = ({name, ...rest}) => {
+const IconFont: FunctionComponent<Props> = ({ name, ...rest }) => {
   switch (name) {
     case 'accessory':
       return <IconAccessory key="1" {...rest} />;

@@ -1,4 +1,4 @@
-import {observable, IObservableValue} from 'mobx';
+import { observable, IObservableValue } from 'mobx';
 
 export type StatusType = 'idle' | 'pending' | 'done' | 'error';
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text, ViewStyle} from 'react-native';
+import { View, Text, ViewStyle } from 'react-native';
 
 export interface UseCaseProps {
   /** The title. */
@@ -19,10 +19,11 @@ export function UseCase(props: UseCaseProps) {
           fontSize: 24,
           paddingHorizontal: 10,
           paddingVertical: 10,
-        }}>
+        }}
+      >
         {props.text}
       </Text>
-      <View style={{paddingVertical: 10}}>{props.children}</View>
+      <View style={{ paddingVertical: 10 }}>{props.children}</View>
     </React.Fragment>
   );
 }

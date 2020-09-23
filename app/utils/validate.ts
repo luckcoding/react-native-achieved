@@ -1,4 +1,4 @@
-import {contains} from 'ramda';
+import { contains } from 'ramda';
 const ValidateJS = require('validate.js');
 
 // HACK(steve): wierd typescript situation because of strange typings
@@ -79,5 +79,5 @@ export function validate(rules: ValidationRules, data: {}): ValidationErrors {
   if (typeof data !== 'object') {
     return {} as ValidationErrors;
   }
-  return Validate(data, rules, {fullMessages: false}) || {};
+  return Validate(data, rules, { fullMessages: false }) || {};
 }

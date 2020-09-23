@@ -1,7 +1,7 @@
-import React, {memo, useState, useMemo} from 'react';
+import React, { memo, useState, useMemo } from 'react';
 import FastImage from 'react-native-fast-image';
-import {Image as RNImage} from 'react-native';
-import {ImageProps} from './image.props';
+import { Image as RNImage } from 'react-native';
+import { ImageProps } from './image.props';
 
 const placeholderDefault = require('../../assets/pic.png');
 

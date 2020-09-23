@@ -1,15 +1,20 @@
-import React, {useState, useEffect} from 'react';
-import {ActionSheetProps} from './action-sheet.props';
+import React, { useState, useEffect } from 'react';
+import { ActionSheetProps } from './action-sheet.props';
 import {
   styles,
   ActionSheetItemHeight,
   ActionSheetCancelSpacing,
 } from './action-sheet.styles';
-import {ViewStyle, Animated, TouchableOpacity, StyleSheet} from 'react-native';
-import {RectButton} from 'react-native-gesture-handler';
-import {useSafeArea} from 'react-native-safe-area-context';
-import {useColorTheme} from '../../theme';
-import {Text} from '../text/text';
+import {
+  ViewStyle,
+  Animated,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
+import { useSafeArea } from 'react-native-safe-area-context';
+import { useColorTheme } from '../../theme';
+import { Text } from '../text/text';
 
 export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
   const {
@@ -20,8 +25,8 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
     onHide,
   } = props;
 
-  const {colors} = useColorTheme();
-  const {bottom: safeBottom} = useSafeArea();
+  const { colors } = useColorTheme();
+  const { bottom: safeBottom } = useSafeArea();
 
   const offset =
     (items.length + 1) * ActionSheetItemHeight +
@@ -63,26 +68,28 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
 
   const itemStyle: ViewStyle[] = [
     styles.item,
-    {backgroundColor: colors.cardColor},
+    { backgroundColor: colors.cardColor },
   ];
   const rootStyle: ViewStyle[] = [
     styles.root,
-    {backgroundColor: colors.pageColor},
+    { backgroundColor: colors.pageColor },
   ];
   return (
     <React.Fragment>
       <TouchableOpacity
         style={StyleSheet.absoluteFillObject}
         onPress={() => onIndexHandler()}
-        activeOpacity={1}>
-        <Animated.View style={[{opacity}, styles.mask]} />
+        activeOpacity={1}
+      >
+        <Animated.View style={[{ opacity }, styles.mask]} />
       </TouchableOpacity>
-      <Animated.View style={[rootStyle, {transform: [{translateY}]}]}>
+      <Animated.View style={[rootStyle, { transform: [{ translateY }] }]}>
         {items.map((item, index) => (
           <RectButton
             key={index}
             style={itemStyle}
-            onPress={() => onIndexHandler(index)}>
+            onPress={() => onIndexHandler(index)}
+          >
             <Text h6 upperCase primaryColor={destructiveIndex === index}>
               {item}
             </Text>
@@ -90,7 +97,8 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
         ))}
         <RectButton
           style={[itemStyle, styles.cancelItem]}
-          onPress={() => onIndexHandler()}>
+          onPress={() => onIndexHandler()}
+        >
           <Text h6 upperCase>
             Cancel
           </Text>

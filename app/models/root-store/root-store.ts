@@ -1,5 +1,5 @@
-import {Instance, SnapshotOut, types} from 'mobx-state-tree';
-import {UcenterModel} from '../ucenter';
+import { Instance, SnapshotOut, types } from 'mobx-state-tree';
+import { UcenterModel } from '../ucenter';
 
 /**
  * A RootStore model.

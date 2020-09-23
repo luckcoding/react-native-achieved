@@ -18,8 +18,8 @@ import React, {
   useRef,
   FunctionComponent as Component,
 } from 'react';
-import {NavigationContainerRef} from '@react-navigation/native';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import { NavigationContainerRef } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as storage from './utils/storage';
 import {
   useBackButtonHandler,
@@ -28,14 +28,14 @@ import {
   setRootNavigation,
   useNavigationPersistence,
 } from './navigation';
-import {RootStore, RootStoreProvider, setupRootStore} from './models';
+import { RootStore, RootStoreProvider, setupRootStore } from './models';
 
 // This puts screens in a native ViewController or Activity. If you want fully native
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
 // https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
-import {enableScreens} from 'react-native-screens';
-import {ColorThemeProvider, useNavigationTheme} from './theme';
-import {StatusBar} from 'react-native';
+import { enableScreens } from 'react-native-screens';
+import { ColorThemeProvider, useNavigationTheme } from './theme';
+import { StatusBar } from 'react-native';
 
 enableScreens();
 

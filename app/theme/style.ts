@@ -1,8 +1,8 @@
-import {useColorTheme} from './color-theme';
-import {Colors} from './color';
-import {ViewStyle, TextStyle, ImageStyle} from 'react-native';
+import { useColorTheme } from './color-theme';
+import { Colors } from './color';
+import { ViewStyle, TextStyle, ImageStyle } from 'react-native';
 
-type Styles = {[key: string]: ViewStyle | TextStyle | ImageStyle};
+type Styles = { [key: string]: ViewStyle | TextStyle | ImageStyle };
 
 // export function createStyled<P, S extends Styles>(
 //   dynamic: (props: P, colors: Colors) => S

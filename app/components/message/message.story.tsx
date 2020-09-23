@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {storiesOf} from '@storybook/react-native';
-import {StoryScreen} from '../../../storybook/views';
-import {StyleSheet, TouchableOpacity, Modal} from 'react-native';
-import {Text} from '../text/text';
-import {View} from '../view/view';
-import {useMessage} from './message.provider';
-import {Sibling, SiblingHandles} from '../sibling/sibling';
+import { storiesOf } from '@storybook/react-native';
+import { StoryScreen } from '../../../storybook/views';
+import { StyleSheet, TouchableOpacity, Modal } from 'react-native';
+import { Text } from '../text/text';
+import { View } from '../view/view';
+import { useMessage } from './message.provider';
+import { Sibling, SiblingHandles } from '../sibling/sibling';
 
 declare let module;
 
@@ -26,10 +26,10 @@ storiesOf('Message', module)
   .add('core', () =>
     React.createElement(() => {
       const [visible, setVisible] = React.useState(false);
-      const {show, error, success, warning} = useMessage();
+      const { show, error, success, warning } = useMessage();
       const messageSiblingRef = React.useRef<SiblingHandles>();
       const onPress = () => {
-        warning({text: 'warning text'}, messageSiblingRef);
+        warning({ text: 'warning text' }, messageSiblingRef);
       };
       return (
         <React.Fragment>
@@ -37,35 +37,43 @@ storiesOf('Message', module)
             <TouchableOpacity
               style={styles.item}
               onPress={() =>
-                show({type: 'info', title: 'info title', text: 'info text'})
-              }>
+                show({ type: 'info', title: 'info title', text: 'info text' })
+              }
+            >
               <Text>show info</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.item}
-              onPress={() => error({title: 'error title', text: 'error text'})}>
+              onPress={() =>
+                error({ title: 'error title', text: 'error text' })
+              }
+            >
               <Text>show error</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.item}
-              onPress={() => success({title: 'success title'})}>
+              onPress={() => success({ title: 'success title' })}
+            >
               <Text>show success</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.item}
-              onPress={() => warning({text: 'warning text'})}>
+              onPress={() => warning({ text: 'warning text' })}
+            >
               <Text>show warning</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.item}
-              onPress={() => setVisible(true)}>
+              onPress={() => setVisible(true)}
+            >
               <Text>Show Modal</Text>
             </TouchableOpacity>
           </View>
           <Modal
             visible={visible}
             animationType="slide"
-            onRequestClose={() => setVisible(false)}>
+            onRequestClose={() => setVisible(false)}
+          >
             <View style={styles.root}>
               <TouchableOpacity style={styles.item} onPress={onPress}>
                 <Text>show</Text>
@@ -73,7 +81,8 @@ storiesOf('Message', module)
             </View>
             <TouchableOpacity
               style={styles.item}
-              onPress={() => setVisible(false)}>
+              onPress={() => setVisible(false)}
+            >
               <Text>Hide Modal</Text>
             </TouchableOpacity>
             <Sibling ref={messageSiblingRef} />

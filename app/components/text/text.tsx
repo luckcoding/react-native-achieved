@@ -1,11 +1,19 @@
 import * as React from 'react';
-import {Text as ReactNativeText} from 'react-native';
-import {TextProps} from './text.props';
-import {translate} from '../../i18n';
-import {useTextStyle} from '../../theme';
+import { Text as ReactNativeText } from 'react-native';
+import { TextProps } from './text.props';
+import { translate } from '../../i18n';
+import { useTextStyle } from '../../theme';
 
 export function Text(props: TextProps) {
-  const {code, codeOptions, text, upperCase, children, style, ...rest} = props;
+  const {
+    code,
+    codeOptions,
+    text,
+    upperCase,
+    children,
+    style,
+    ...rest
+  } = props;
   // theme
   const textStyle = useTextStyle(props, {
     color: 'titleColor',

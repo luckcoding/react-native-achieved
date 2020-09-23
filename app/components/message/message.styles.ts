@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native';
-import {spacing} from '../../theme';
-import {shadow} from '../../theme/shadow';
+import { StyleSheet } from 'react-native';
+import { spacing } from '../../theme';
+import { shadow } from '../../theme/shadow';
 
 export const styles = StyleSheet.create({
   root: {

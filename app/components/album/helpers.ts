@@ -1,6 +1,6 @@
-import {PermissionsAndroid} from 'react-native';
-import {isAndroid} from '../../theme';
-import {PhotoIdentifier} from '@react-native-community/cameraroll';
+import { PermissionsAndroid } from 'react-native';
+import { isAndroid } from '../../theme';
+import { PhotoIdentifier } from '@react-native-community/cameraroll';
 
 export const requestPermissions = async (): Promise<void> => {
   if (isAndroid) {

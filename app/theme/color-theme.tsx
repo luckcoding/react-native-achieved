@@ -5,9 +5,9 @@ import React, {
   useContext,
   useMemo,
 } from 'react';
-import {Appearance, ColorSchemeName} from 'react-native';
-import {useSubscription} from 'use-subscription';
-import {EventEmitter} from 'fbemitter';
+import { Appearance, ColorSchemeName } from 'react-native';
+import { useSubscription } from 'use-subscription';
+import { EventEmitter } from 'fbemitter';
 import {
   lightColors,
   darkColors,
@@ -15,7 +15,7 @@ import {
   NavigationLightTheme,
   Colors,
 } from './color';
-import {Theme} from '@react-navigation/native';
+import { Theme } from '@react-navigation/native';
 
 const eventEmitter = new EventEmitter();
 
@@ -63,7 +63,7 @@ type ColorThemeProvider = {
 };
 
 export const ColorThemeProvider: React.FC<ColorThemeProvider> = (props) => {
-  const {children, colorScheme: colorSchemeOverride} = props;
+  const { children, colorScheme: colorSchemeOverride } = props;
 
   // set init in to store
   AppearancePreferencesStore.colorScheme =
@@ -96,7 +96,7 @@ export const ColorThemeProvider: React.FC<ColorThemeProvider> = (props) => {
     dark: isDark,
     colors: isDark ? darkColors : lightColors,
     setColorScheme: (colorScheme: ColorSchemeName) => {
-      setAppearance({colorScheme});
+      setAppearance({ colorScheme });
     },
   };
 

@@ -1,4 +1,4 @@
-import {useRef} from 'react';
+import { useRef } from 'react';
 
 interface UseCombineOptions {
   duration?: number;
@@ -14,11 +14,13 @@ export const useCombine = <F extends IFunction>(
   options: UseCombineOptions = {},
 ): {
   executor: F;
-  state: {paramsStack: Parameters<F>[]};
+  state: { paramsStack: Parameters<F>[] };
 } => {
-  const {duration, params} = options;
+  const { duration, params } = options;
   const timerRef = useRef<number>();
-  const stateRef = useRef<{paramsStack: Parameters<F>[]}>({paramsStack: []});
+  const stateRef = useRef<{ paramsStack: Parameters<F>[] }>({
+    paramsStack: [],
+  });
 
   return {
     executor: <any>function main(...args: Parameters<F>): any {

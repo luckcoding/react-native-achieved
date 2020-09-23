@@ -1,3 +1,3 @@
-import {ViewProps} from 'react-native';
+import { ViewProps } from 'react-native';
 
 export interface TemplateProps extends ViewProps {}

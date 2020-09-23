@@ -16,10 +16,10 @@ import {
   StyleSheet,
   LayoutChangeEvent,
 } from 'react-native';
-import {screenHeight} from '../../theme';
-import {DropdownProps, DropdownHandles} from './dropdown.props';
-import {styles} from './dropdown.styles';
-import {measure} from '../../utils/helpers';
+import { screenHeight } from '../../theme';
+import { DropdownProps, DropdownHandles } from './dropdown.props';
+import { styles } from './dropdown.styles';
+import { measure } from '../../utils/helpers';
 
 const DropdownCore: RefForwardingComponent<DropdownHandles, DropdownProps> = (
   props,
@@ -51,10 +51,10 @@ const DropdownCore: RefForwardingComponent<DropdownHandles, DropdownProps> = (
   const expanRef = useRef<View>();
 
   const getOffsetTop = async (): Promise<number> => {
-    const {pageY, height} = await measure(findNodeHandle(siblingRef.current));
+    const { pageY, height } = await measure(findNodeHandle(siblingRef.current));
     let offsetTop = pageY + height;
     if (parent) {
-      const {pageY: parentPageY} = await measure(
+      const { pageY: parentPageY } = await measure(
         findNodeHandle(parent.current),
       );
       offsetTop -= parentPageY;
@@ -90,7 +90,7 @@ const DropdownCore: RefForwardingComponent<DropdownHandles, DropdownProps> = (
       duration,
     }).start(() => {
       setIsOpend(false);
-      expanRootRef.current.setNativeProps({height: 0});
+      expanRootRef.current.setNativeProps({ height: 0 });
     });
   };
 
@@ -107,7 +107,7 @@ const DropdownCore: RefForwardingComponent<DropdownHandles, DropdownProps> = (
     }
   };
 
-  useImperativeHandle(ref, () => ({show, hide, toggle}));
+  useImperativeHandle(ref, () => ({ show, hide, toggle }));
 
   return (
     <React.Fragment>
@@ -122,13 +122,15 @@ const DropdownCore: RefForwardingComponent<DropdownHandles, DropdownProps> = (
         <TouchableOpacity
           style={StyleSheet.absoluteFillObject}
           onPress={hide}
-          activeOpacity={1}>
-          <Animated.View style={[{opacity}, styles.mask]} />
+          activeOpacity={1}
+        >
+          <Animated.View style={[{ opacity }, styles.mask]} />
         </TouchableOpacity>
         <Animated.View
           ref={expanRef}
-          style={[expanStyle, {transform: [{translateY}]}]}
-          onLayout={isStaticExpan ? undefined : onExpanLayout}>
+          style={[expanStyle, { transform: [{ translateY }] }]}
+          onLayout={isStaticExpan ? undefined : onExpanLayout}
+        >
           {expan}
         </Animated.View>
       </View>

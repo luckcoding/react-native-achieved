@@ -1,12 +1,12 @@
-import React, {useState, useContext, useRef} from 'react';
-import {Album} from './album';
-import {AlbumContext, IAlbumContext} from './album.context';
-import {Modal} from 'react-native';
-import {Screen} from '../screen/screen';
+import React, { useState, useContext, useRef } from 'react';
+import { Album } from './album';
+import { AlbumContext, IAlbumContext } from './album.context';
+import { Modal } from 'react-native';
+import { Screen } from '../screen/screen';
 
 export const useAlbum = () => useContext(AlbumContext);
 
-export const AlbumProvider = ({children}) => {
+export const AlbumProvider = ({ children }) => {
   const onSelectTargetRef = useRef<(selected: string[]) => void>();
   const [initialSelected, setInitialSelected] = useState<string[]>([]);
   const [visibile, setVisibile] = useState(false);
@@ -36,7 +36,8 @@ export const AlbumProvider = ({children}) => {
         visible={visibile}
         onRequestClose={onHide}
         animationType="slide"
-        presentationStyle="overFullScreen">
+        presentationStyle="overFullScreen"
+      >
         <Screen>
           <Album
             onCancel={onHide}

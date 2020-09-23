@@ -30,7 +30,7 @@ const getTemplate = async (rename, dir) => {
 };
 
 module.exports = async function generate(options) {
-  const {savedDir, templateDir, type, name} = options;
+  const { savedDir, templateDir, type, name } = options;
   try {
     const targetDir = path.join(savedDir, name);
 

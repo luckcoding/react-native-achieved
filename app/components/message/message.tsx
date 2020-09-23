@@ -1,15 +1,15 @@
-import React, {useEffect, useState, memo} from 'react';
-import {Animated} from 'react-native';
-import {useSafeArea} from 'react-native-safe-area-context';
-import {styles} from './message.styles';
-import {View} from '../view/view';
+import React, { useEffect, useState, memo } from 'react';
+import { Animated } from 'react-native';
+import { useSafeArea } from 'react-native-safe-area-context';
+import { styles } from './message.styles';
+import { View } from '../view/view';
 import IconWarningFill from '../icon/IconWarningFill';
 import IconSuccessFill from '../icon/IconSuccessFill';
 import IconAccessory from '../icon/IconAccessory';
 import IconActivityFill from '../icon/IconActivityFill';
-import {Text} from '../text/text';
-import {IMessage} from './message.context';
-import {useColorTheme} from '../../theme';
+import { Text } from '../text/text';
+import { IMessage } from './message.context';
+import { useColorTheme } from '../../theme';
 
 type MessageProps = IMessage & {
   duration?: number;
@@ -18,12 +18,12 @@ type MessageProps = IMessage & {
 };
 
 export const Message: React.FC<MessageProps> = memo((props) => {
-  const {type, title, text, duration = 3000, offsetTop = 0, onHide} = props;
+  const { type, title, text, duration = 3000, offsetTop = 0, onHide } = props;
 
   const [translateY] = useState(new Animated.Value(0));
 
-  const {top: safeTop} = useSafeArea();
-  const {colors} = useColorTheme();
+  const { top: safeTop } = useSafeArea();
+  const { colors } = useColorTheme();
 
   const showAnimation = () => {
     Animated.spring(translateY, {
@@ -55,8 +55,9 @@ export const Message: React.FC<MessageProps> = memo((props) => {
     <Animated.View
       style={[
         styles.root,
-        {backgroundColor: colors.cardColor, transform: [{translateY}]},
-      ]}>
+        { backgroundColor: colors.cardColor, transform: [{ translateY }] },
+      ]}
+    >
       {type === 'info' && <IconActivityFill style={styles.icon} />}
       {type === 'error' && <IconAccessory style={styles.icon} />}
       {type === 'success' && <IconSuccessFill style={styles.icon} />}

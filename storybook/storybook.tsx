@@ -1,10 +1,10 @@
-import React, {useEffect, FunctionComponent} from 'react';
-import {getStorybookUI, configure} from '@storybook/react-native';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {ColorThemeProvider} from '../app/theme';
-import {MessageProvider} from '../app/components/message/message.provider';
-import {ActionSheetProvider} from '../app/components/action-sheet/action-sheet.provider';
-import {AlbumProvider} from '../app/components/album/album.provider';
+import React, { useEffect, FunctionComponent } from 'react';
+import { getStorybookUI, configure } from '@storybook/react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { ColorThemeProvider } from '../app/theme';
+import { MessageProvider } from '../app/components/message/message.provider';
+import { ActionSheetProvider } from '../app/components/action-sheet/action-sheet.provider';
+import { AlbumProvider } from '../app/components/album/album.provider';
 
 declare let module;
 

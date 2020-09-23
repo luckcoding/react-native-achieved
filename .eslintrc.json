@@ -52,6 +52,7 @@
     "react-native/split-platform-components": 0,
     "react-native/sort-styles": 0,
     "space-before-function-paren": 0,
+    "semi": 0,
     "indent": 0,
     "func-call-spacing": 0,
     "@typescript-eslint/ban-ts-ignore": 0,

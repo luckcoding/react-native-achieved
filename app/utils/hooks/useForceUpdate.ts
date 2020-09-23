@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 export const useForceUpdate = (): [number, () => void] => {
   const [updated, forceUpdate] = useState(0);

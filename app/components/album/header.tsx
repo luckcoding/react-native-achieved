@@ -1,12 +1,12 @@
-import React, {memo, useRef} from 'react';
+import React, { memo, useRef } from 'react';
 import CameraRoll from '@react-native-community/cameraroll';
-import {DropdownHandles} from '../dropdown/dropdown.props';
-import {Dropdown} from '../dropdown/dropdown';
-import {SELECT_MENU_HEIGHT, styles} from './album.styles';
-import {RectButton} from 'react-native-gesture-handler';
-import {Text} from '../text/text';
-import {View} from '../view/view';
-import {TouchableOpacity} from 'react-native';
+import { DropdownHandles } from '../dropdown/dropdown.props';
+import { Dropdown } from '../dropdown/dropdown';
+import { SELECT_MENU_HEIGHT, styles } from './album.styles';
+import { RectButton } from 'react-native-gesture-handler';
+import { Text } from '../text/text';
+import { View } from '../view/view';
+import { TouchableOpacity } from 'react-native';
 
 type HeaderProps = {
   albums?: CameraRoll.Album[];
@@ -15,7 +15,7 @@ type HeaderProps = {
 };
 
 export const Header: React.FC<HeaderProps> = memo((props) => {
-  const {albums = [], onCancel, onOk} = props;
+  const { albums = [], onCancel, onOk } = props;
   const dropdownRef = useRef<DropdownHandles>();
   return (
     <Dropdown
@@ -32,7 +32,8 @@ export const Header: React.FC<HeaderProps> = memo((props) => {
             </RectButton>
           ))}
         </React.Fragment>
-      }>
+      }
+    >
       <View cardColor style={styles.header}>
         <TouchableOpacity style={styles.editBtn} onPress={onCancel}>
           <Text remarkColor>Cancel</Text>

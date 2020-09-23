@@ -1,12 +1,12 @@
-import {ColorsKeys, ColorsLiterals} from './color';
-import {typographyKeys, TypographyLiterals, typography} from './typography';
-import {TextStyle, ViewStyle} from 'react-native';
-import {useColorTheme} from './color-theme';
-import {TextProps} from '../components/text/text.props';
-import {ViewProps} from '../components/view/view.props';
+import { ColorsKeys, ColorsLiterals } from './color';
+import { typographyKeys, TypographyLiterals, typography } from './typography';
+import { TextStyle, ViewStyle } from 'react-native';
+import { useColorTheme } from './color-theme';
+import { TextProps } from '../components/text/text.props';
+import { ViewProps } from '../components/view/view.props';
 
 export function useViewStyle(props: ViewProps): ViewStyle {
-  const {colors} = useColorTheme();
+  const { colors } = useColorTheme();
   const viewStyle: ViewStyle = {};
 
   let bgColorPropsKey: ColorsLiterals;
@@ -36,10 +36,10 @@ export function useTextStyle(
   props: TextProps,
   options: TextStyleOptions,
 ): TextStyle {
-  const {colors} = useColorTheme();
+  const { colors } = useColorTheme();
   const textStyle: TextStyle = {};
 
-  let {color: colorKey, typography: typographyKey} = options;
+  let { color: colorKey, typography: typographyKey } = options;
 
   // set color styles
   for (const key in props) {

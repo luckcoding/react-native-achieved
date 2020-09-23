@@ -1,5 +1,5 @@
-import {FastImageProps, Source} from 'react-native-fast-image';
-import {ImageStyle} from 'react-native';
+import { FastImageProps, Source } from 'react-native-fast-image';
+import { ImageStyle } from 'react-native';
 
 export interface ImageProps extends Omit<FastImageProps, 'style'> {
   /**

@@ -1,5 +1,5 @@
 // Use this import if you want to use "env.js" file
-const {API_URL} = require('../../config/env');
+const { API_URL } = require('../../config/env');
 
 /**
  * The options used to configure the API.

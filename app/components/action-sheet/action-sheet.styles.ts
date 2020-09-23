@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {spacing, screenHeight} from '../../theme';
+import { StyleSheet } from 'react-native';
+import { spacing, screenHeight } from '../../theme';
 
 export const ActionSheetItemHeight = 56;
 export const ActionSheetCancelSpacing = spacing[2];

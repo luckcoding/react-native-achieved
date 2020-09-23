@@ -1,4 +1,4 @@
-import {Instance, types, flow} from 'mobx-state-tree';
+import { Instance, types, flow } from 'mobx-state-tree';
 
 export const UcenterModel = types
   .model('ucenter')

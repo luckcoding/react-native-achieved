@@ -1,9 +1,9 @@
-import React, {memo, forwardRef} from 'react';
-import {ViewStyle, TextStyle, ImageStyle} from 'react-native';
-import {Colors} from './color';
-import {useColorTheme} from './color-theme';
+import React, { memo, forwardRef } from 'react';
+import { ViewStyle, TextStyle, ImageStyle } from 'react-native';
+import { Colors } from './color';
+import { useColorTheme } from './color-theme';
 
-type IStyles = {[key: string]: ViewStyle | TextStyle | ImageStyle};
+type IStyles = { [key: string]: ViewStyle | TextStyle | ImageStyle };
 type IStyled<P extends {}, C extends Colors, S extends IStyles> = (
   props: P,
   colors: C,
@@ -22,11 +22,12 @@ export const theme = <
   styled: F,
   baseComponent: React.RefForwardingComponent<
     TRef,
-    P & {styles: ReturnType<F>}
+    P & { styles: ReturnType<F> }
   >,
   options?: IThemeOptions,
 ): React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<P & {styles: ReturnType<F>}> & React.RefAttributes<TRef>
+  React.PropsWithoutRef<P & { styles: ReturnType<F> }> &
+    React.RefAttributes<TRef>
 > => {
   const realOptions: IThemeOptions = {
     forwardRef: false,
@@ -35,11 +36,11 @@ export const theme = <
 
   const baseComponentName = baseComponent.displayName || baseComponent.name;
   const wrappedComponent = (
-    props: P & {styles: ReturnType<F>},
+    props: P & { styles: ReturnType<F> },
     ref: React.Ref<TRef>,
   ) => {
     const styles = styled(props, useColorTheme().colors);
-    return baseComponent({...props, styles} as any, ref);
+    return baseComponent({ ...props, styles } as any, ref);
   };
   wrappedComponent.displayName = baseComponentName;
 

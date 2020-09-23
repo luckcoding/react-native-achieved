@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {storiesOf} from '@storybook/react-native';
-import {StoryScreen} from '../../../storybook/views';
-import {Dropdown} from './dropdown';
+import { storiesOf } from '@storybook/react-native';
+import { StoryScreen } from '../../../storybook/views';
+import { Dropdown } from './dropdown';
 import {
   StyleSheet,
   TouchableOpacity,
@@ -9,9 +9,9 @@ import {
   ScrollView,
   View as RNView,
 } from 'react-native';
-import {Text} from '../text/text';
-import {View} from '../view/view';
-import {DropdownHandles} from './dropdown.props';
+import { Text } from '../text/text';
+import { View } from '../view/view';
+import { DropdownHandles } from './dropdown.props';
 
 declare let module;
 
@@ -41,11 +41,13 @@ storiesOf('Dropdown', module)
         <Dropdown
           ref={dropdownRef}
           expanHeight={100}
-          expan={<Expand onPress={() => dropdownRef.current.hide()} />}>
+          expan={<Expand onPress={() => dropdownRef.current.hide()} />}
+        >
           <Text
             bgColor="pageColor"
             h1
-            onPress={() => dropdownRef.current.toggle()}>
+            onPress={() => dropdownRef.current.toggle()}
+          >
             Header - Toggle
           </Text>
         </Dropdown>
@@ -60,15 +62,14 @@ storiesOf('Dropdown', module)
       const inscrollDropdownRef = React.useRef<DropdownHandles>();
 
       return (
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <Text h1>Header</Text>
           <RNView collapsable={false} ref={fixedDropdownParentRef}>
             <Dropdown
               ref={fixedDropdownRef}
               parent={fixedDropdownParentRef}
-              expan={
-                <Expand onPress={() => fixedDropdownRef.current.hide()} />
-              }>
+              expan={<Expand onPress={() => fixedDropdownRef.current.hide()} />}
+            >
               <Text h2 onPress={() => fixedDropdownRef.current.toggle()}>
                 Fixed - Toggle
               </Text>
@@ -85,7 +86,8 @@ storiesOf('Dropdown', module)
                     <Expand
                       onPress={() => inscrollDropdownRef.current.hide()}
                     />
-                  }>
+                  }
+                >
                   <Text h2 onPress={() => inscrollDropdownRef.current.toggle()}>
                     InScroll - Toggle
                   </Text>

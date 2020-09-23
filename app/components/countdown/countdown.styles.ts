@@ -1,4 +1,4 @@
-import {createStyled, spacing} from '../../theme';
+import { createStyled, spacing } from '../../theme';
 
 const HEIGHT = 28;
 

@@ -3,7 +3,7 @@ import {
   KeyboardAvoidingViewProps,
   ViewStyle,
 } from 'react-native';
-import {ViewProps} from '../view/view.props';
+import { ViewProps } from '../view/view.props';
 
 export interface ScreenProps extends ViewProps {
   /**

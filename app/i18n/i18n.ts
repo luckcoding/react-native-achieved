@@ -5,11 +5,11 @@ const en = require('./en');
 const ja = require('./ja');
 
 i18n.fallbacks = true;
-i18n.translations = {en, ja};
+i18n.translations = { en, ja };
 
-const fallback = {languageTag: 'en', isRTL: false};
+const fallback = { languageTag: 'en', isRTL: false };
 
-const {languageTag} =
+const { languageTag } =
   RNLocalize.findBestAvailableLanguage(Object.keys(i18n.translations)) ||
   fallback;
 i18n.locale = languageTag;

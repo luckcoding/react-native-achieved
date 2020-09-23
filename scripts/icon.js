@@ -1,5 +1,5 @@
 const path = require('path');
-const {readFile, writeFile, successLog} = require('./utils');
+const { readFile, writeFile, successLog } = require('./utils');
 
 const iconIndexFile = path.resolve(
   __dirname,

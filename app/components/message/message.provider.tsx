@@ -1,10 +1,16 @@
-import React, {useState, useContext, useEffect, RefObject, useRef} from 'react';
-import {MessageContext, IMessage, IMessageContext} from './message.context';
-import {Message} from './message';
-import {Sibling, SiblingHandles} from '../sibling/sibling';
-import {findIndex, propEq} from 'ramda';
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  RefObject,
+  useRef,
+} from 'react';
+import { MessageContext, IMessage, IMessageContext } from './message.context';
+import { Message } from './message';
+import { Sibling, SiblingHandles } from '../sibling/sibling';
+import { findIndex, propEq } from 'ramda';
 
-type MessageOptions = IMessage & {unquie: string};
+type MessageOptions = IMessage & { unquie: string };
 type SiblingRef = RefObject<SiblingHandles>;
 
 export const useMessage = () => useContext(MessageContext);
@@ -17,7 +23,7 @@ const clearCreateSafeTimer = () => {
   createSafeTimer = undefined;
 };
 
-export const MessageProvider: React.FC<{stacked?: boolean}> = ({
+export const MessageProvider: React.FC<{ stacked?: boolean }> = ({
   children,
   stacked = true,
 }) => {
@@ -64,7 +70,7 @@ export const MessageProvider: React.FC<{stacked?: boolean}> = ({
       targetMessageOptions.unshift(messageOptions);
     }
 
-    const {unquie} = messageOptions;
+    const { unquie } = messageOptions;
     const MessageItem = (
       <Message
         key={unquie}
@@ -80,13 +86,13 @@ export const MessageProvider: React.FC<{stacked?: boolean}> = ({
   const context: IMessageContext = {
     show: createMessage,
     error: (options, siblingRef) =>
-      createMessage({type: 'error', ...options}, siblingRef),
+      createMessage({ type: 'error', ...options }, siblingRef),
     success: (options, siblingRef) =>
-      createMessage({type: 'success', ...options}, siblingRef),
+      createMessage({ type: 'success', ...options }, siblingRef),
     info: (options, siblingRef) =>
-      createMessage({type: 'info', ...options}, siblingRef),
+      createMessage({ type: 'info', ...options }, siblingRef),
     warning: (options, siblingRef) =>
-      createMessage({type: 'warning', ...options}, siblingRef),
+      createMessage({ type: 'warning', ...options }, siblingRef),
   };
 
   useEffect(

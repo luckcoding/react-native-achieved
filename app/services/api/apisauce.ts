@@ -1,4 +1,4 @@
-import {isJsonObject, QS} from '../../utils/helpers';
+import { isJsonObject, QS } from '../../utils/helpers';
 
 export interface RequestConfig {
   baseURL?: string;
@@ -53,7 +53,7 @@ const getBodyByContentType = (
 };
 
 export const create = (config: RequestConfig = {}) => {
-  const {baseURL = '', headers: baseHeaders = {}, timeout = 100000} = config;
+  const { baseURL = '', headers: baseHeaders = {}, timeout = 100000 } = config;
 
   // const TIMEOUT_RESPONSE = new Response('timeout', { status: 504, statusText: 'timeout' })
 
@@ -67,12 +67,12 @@ export const create = (config: RequestConfig = {}) => {
     body?: BodyInit_;
     config?: RequestConfig;
   }) => {
-    const {method = 'get', url = '', body, config = {}} = options;
+    const { method = 'get', url = '', body, config = {} } = options;
 
     const withBody = ['get', 'head', 'delete'].indexOf(method) === -1;
 
     // handle fetch headers
-    const headers = {...baseHeaders, ...config.headers};
+    const headers = { ...baseHeaders, ...config.headers };
     const contentType = getContentType(headers);
 
     // handle fetch url
@@ -108,35 +108,35 @@ export const create = (config: RequestConfig = {}) => {
       body?: any,
       config?: RequestConfig,
     ): Promise<Response> {
-      return await assemble({method: 'get', url, body, config});
+      return await assemble({ method: 'get', url, body, config });
     },
     async post(
       url: string,
       body?: any,
       config?: RequestConfig,
     ): Promise<Response> {
-      return await assemble({method: 'post', url, body, config});
+      return await assemble({ method: 'post', url, body, config });
     },
     async put(
       url: string,
       body?: any,
       config?: RequestConfig,
     ): Promise<Response> {
-      return await assemble({method: 'put', url, body, config});
+      return await assemble({ method: 'put', url, body, config });
     },
     async delete(
       url: string,
       body?: any,
       config?: RequestConfig,
     ): Promise<Response> {
-      return await assemble({method: 'delete', url, body, config});
+      return await assemble({ method: 'delete', url, body, config });
     },
     async head(
       url: string,
       body?: any,
       config?: RequestConfig,
     ): Promise<Response> {
-      return await assemble({method: 'head', url, body, config});
+      return await assemble({ method: 'head', url, body, config });
     },
     setHeader,
   };

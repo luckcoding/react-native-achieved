@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {spacing} from '../../theme';
+import { StyleSheet } from 'react-native';
+import { spacing } from '../../theme';
 
 export const SELECT_MENU_HEIGHT = 56;
 

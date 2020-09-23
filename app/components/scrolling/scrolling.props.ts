@@ -1,6 +1,6 @@
 import React from 'react';
-import {ViewProps} from '../view/view.props';
-import {ScrollViewProps} from 'react-native';
+import { ViewProps } from '../view/view.props';
+import { ScrollViewProps } from 'react-native';
 
 export type ScrollingProps = ViewProps & {
   activeIndex: number;

@@ -1,7 +1,7 @@
-import React, {memo} from 'react';
-import {RNCamera} from 'react-native-camera';
-import {StyleSheet} from 'react-native';
-import {ITEM_SIZE} from './setting';
+import React, { memo } from 'react';
+import { RNCamera } from 'react-native-camera';
+import { StyleSheet } from 'react-native';
+import { ITEM_SIZE } from './setting';
 
 const styles = StyleSheet.create({
   root: {

@@ -1,11 +1,14 @@
 import Tron from 'reactotron-react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import {RootStore} from '../../models/root-store/root-store';
-import {onSnapshot} from 'mobx-state-tree';
-import {ReactotronConfig, DEFAULT_REACTOTRON_CONFIG} from './reactotron-config';
-import {mst} from 'reactotron-mst';
-import {clear} from '../../utils/storage';
-import {RootNavigation} from '../../navigation';
+import { RootStore } from '../../models/root-store/root-store';
+import { onSnapshot } from 'mobx-state-tree';
+import {
+  ReactotronConfig,
+  DEFAULT_REACTOTRON_CONFIG,
+} from './reactotron-config';
+import { mst } from 'reactotron-mst';
+import { clear } from '../../utils/storage';
+import { RootNavigation } from '../../navigation';
 
 // Teach TypeScript about the bad things we want to do.
 declare global {
@@ -87,7 +90,7 @@ export class Reactotron {
       rootStore = rootStore as RootStore; // typescript hack
       this.rootStore = rootStore;
 
-      const {initial, snapshots} = this.config.state;
+      const { initial, snapshots } = this.config.state;
       const name = 'ROOT STORE';
 
       // logging features
@@ -101,7 +104,7 @@ export class Reactotron {
       // log state changes?
       if (snapshots) {
         onSnapshot(rootStore, (snapshot) => {
-          console.tron.display({name, value: snapshot, preview: 'New State'});
+          console.tron.display({ name, value: snapshot, preview: 'New State' });
         });
       }
 
@@ -160,7 +163,7 @@ export class Reactotron {
         command: 'resetNavigation',
         handler: () => {
           console.tron.log('resetting navigation state');
-          RootNavigation.resetRoot({routes: []});
+          RootNavigation.resetRoot({ routes: [] });
         },
       });
 

@@ -5,11 +5,11 @@ import {
   ViewStyle,
   KeyboardAvoidingView,
 } from 'react-native';
-import {useSafeArea} from 'react-native-safe-area-context';
-import {ScreenProps} from './screen.props';
-import {View} from '../view/view';
-import {isIOS} from '../../theme';
-import {flattenStyle} from '../../utils/helpers';
+import { useSafeArea } from 'react-native-safe-area-context';
+import { ScreenProps } from './screen.props';
+import { View } from '../view/view';
+import { isIOS } from '../../theme';
+import { flattenStyle } from '../../utils/helpers';
 
 const styles = StyleSheet.create({
   root: {
@@ -26,14 +26,14 @@ export const Screen: React.FC<ScreenProps> = (props) => {
     ...other
   } = props;
 
-  const {top: safeTop} = useSafeArea();
+  const { top: safeTop } = useSafeArea();
   const extendStyle: ViewStyle = {};
 
   const handleSafeTop = () => {
     let nextSafeTop = safeTop;
     const styleOverride = flattenStyle<ViewStyle>(style);
     if (typeof styleOverride === 'object') {
-      const {padding, paddingVertical, paddingTop} = styleOverride;
+      const { padding, paddingVertical, paddingTop } = styleOverride;
       if (typeof padding === 'number') {
         nextSafeTop += padding;
       } else if (typeof paddingVertical === 'number') {
@@ -60,9 +60,10 @@ export const Screen: React.FC<ScreenProps> = (props) => {
       typeof keyboardAvoidingView === 'boolean' ? {} : keyboardAvoidingView;
     return (
       <KeyboardAvoidingView
-        style={{height: '100%', flex: 1}}
+        style={{ height: '100%', flex: 1 }}
         behavior={isIOS ? 'padding' : null}
-        {...keyboardAvoidingViewProps}>
+        {...keyboardAvoidingViewProps}
+      >
         {content}
       </KeyboardAvoidingView>
     );

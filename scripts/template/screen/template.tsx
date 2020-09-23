@@ -1,6 +1,6 @@
 import React from 'react';
-import {NativeStackNavigationProp} from 'react-native-screens/lib/typescript';
-import {styles} from './template.styles';
+import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript';
+import { styles } from './template.styles';
 
 export interface TemplateProps {
   navigation: NativeStackNavigationProp<any>;

@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {onePixel, createStyled, spacing, typography} from '../../theme';
+import { StyleSheet } from 'react-native';
+import { onePixel, createStyled, spacing, typography } from '../../theme';
 
 export const styled = createStyled((props, colors) => ({
   root: {

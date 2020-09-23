@@ -1,9 +1,14 @@
-import React, {useRef, memo, useMemo, useEffect} from 'react';
-import {ViewStyle, Animated, LayoutChangeEvent, ScrollView} from 'react-native';
-import {RectButton} from 'react-native-gesture-handler';
-import {View} from '../view/view';
-import {ScrollingProps} from './scrolling.props';
-import {styles} from './scrolling.styles';
+import React, { useRef, memo, useMemo, useEffect } from 'react';
+import {
+  ViewStyle,
+  Animated,
+  LayoutChangeEvent,
+  ScrollView,
+} from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
+import { View } from '../view/view';
+import { ScrollingProps } from './scrolling.props';
+import { styles } from './scrolling.styles';
 
 export const Scrolling: React.FC<ScrollingProps> = memo((props) => {
   const {
@@ -18,25 +23,25 @@ export const Scrolling: React.FC<ScrollingProps> = memo((props) => {
     ...other
   } = props;
 
-  const store = useRef<{rootSize: number; sizes: number[]}>({
+  const store = useRef<{ rootSize: number; sizes: number[] }>({
     rootSize: 0,
     sizes: [],
   });
   const scrollRef = useRef<ScrollView>();
 
   const onRootLayout = (e: LayoutChangeEvent) => {
-    const {width, height} = e.nativeEvent.layout;
+    const { width, height } = e.nativeEvent.layout;
     store.current.rootSize = horizontal ? width : height;
   };
 
   const onItemLayout = (e: LayoutChangeEvent, index: number) => {
-    const {width, height} = e.nativeEvent.layout;
+    const { width, height } = e.nativeEvent.layout;
     store.current.sizes[index] = horizontal ? width : height;
   };
 
   const onEachPress = useMemo(
     () => (index: number) => {
-      const {rootSize = 0, sizes = []} = store.current;
+      const { rootSize = 0, sizes = [] } = store.current;
       let offset = spacing * (index + 1);
       let targetOffset = 0;
       const halfRootSize = rootSize / 2;
@@ -51,7 +56,7 @@ export const Scrolling: React.FC<ScrollingProps> = memo((props) => {
       }
 
       if (scrollRef.current) {
-        scrollRef.current.scrollTo({[horizontal ? 'x' : 'y']: targetOffset});
+        scrollRef.current.scrollTo({ [horizontal ? 'x' : 'y']: targetOffset });
       }
 
       typeof onChange === 'function' && onChange(index);
@@ -67,14 +72,16 @@ export const Scrolling: React.FC<ScrollingProps> = memo((props) => {
     <View
       style={[styles.root, styleOverride]}
       onLayout={onRootLayout}
-      {...other}>
+      {...other}
+    >
       <Animated.ScrollView
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         bounces
         {...scrollProps}
         ref={scrollRef}
-        horizontal={horizontal}>
+        horizontal={horizontal}
+      >
         {items.map((item, index) => {
           const itemSpacingStyle: ViewStyle = {
             [horizontal ? 'marginRight' : 'marginBottom']: spacing, // 两端均包含spacing
@@ -88,7 +95,8 @@ export const Scrolling: React.FC<ScrollingProps> = memo((props) => {
               onPress={() => onEachPress(index)}
               // @ts-ignore
               onLayout={(e) => onItemLayout(e, index)}
-              style={itemSpacingStyle}>
+              style={itemSpacingStyle}
+            >
               {renderItem(item, index === activeIndex)}
             </RectButton>
           );

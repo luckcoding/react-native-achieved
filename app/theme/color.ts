@@ -1,4 +1,4 @@
-import {Theme} from '@react-navigation/native';
+import { Theme } from '@react-navigation/native';
 
 export const lightColors = {
   // core

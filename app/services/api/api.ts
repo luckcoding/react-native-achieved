@@ -1,5 +1,5 @@
-import {create, MethodType} from './apisauce';
-import {ApiConfig, DEFAULT_API_CONFIG} from './api-config';
+import { create, MethodType } from './apisauce';
+import { ApiConfig, DEFAULT_API_CONFIG } from './api-config';
 import * as Types from './api.types';
 
 /**

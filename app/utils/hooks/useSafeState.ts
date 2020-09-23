@@ -1,4 +1,4 @@
-import {useState, Dispatch, SetStateAction, useEffect, useRef} from 'react';
+import { useState, Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 export function useSafeState<S>(
   initialState?: S | (() => S),

@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface UseCountDownOptions {
   duration?: number;
@@ -34,5 +34,5 @@ export function useCountDown(options: UseCountDownOptions = {}) {
     };
   }, []);
 
-  return {count, start};
+  return { count, start };
 }

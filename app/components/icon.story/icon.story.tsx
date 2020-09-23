@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {storiesOf} from '@storybook/react-native';
-import {StoryScreen, Story} from '../../../storybook/views';
+import { storiesOf } from '@storybook/react-native';
+import { StoryScreen, Story } from '../../../storybook/views';
 import IconFont from '../icon';
-import {StyleSheet} from 'react-native';
-import {IconNames} from '../icon/names';
-import {View} from '../view/view';
-import {Text} from '../text/text';
-import {onePixel, screenWidth} from '../../theme';
+import { StyleSheet } from 'react-native';
+import { IconNames } from '../icon/names';
+import { View } from '../view/view';
+import { Text } from '../text/text';
+import { onePixel, screenWidth } from '../../theme';
 
 declare let module;
 

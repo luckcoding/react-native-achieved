@@ -1,5 +1,5 @@
-import React, {useState, useContext} from 'react';
-import {ActionSheet} from './action-sheet';
+import React, { useState, useContext } from 'react';
+import { ActionSheet } from './action-sheet';
 import {
   ActionSheetContext,
   IActionSheetContext,
@@ -8,7 +8,7 @@ import {
 
 export const useActionSheet = () => useContext(ActionSheetContext);
 
-export const ActionSheetProvider = ({children}) => {
+export const ActionSheetProvider = ({ children }) => {
   const [options, setOptions] = useState<IActionSheetOptions>({
     items: [],
     onIndex: () => undefined,

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {storiesOf} from '@storybook/react-native';
-import {StoryScreen, Story, UseCase} from '../../../storybook/views';
-import {Text} from './text';
-import {ColorsKeys} from '../../theme';
-import {StyleSheet} from 'react-native';
+import { storiesOf } from '@storybook/react-native';
+import { StoryScreen, Story, UseCase } from '../../../storybook/views';
+import { Text } from './text';
+import { ColorsKeys } from '../../theme';
+import { StyleSheet } from 'react-native';
 
 declare let module;
 
@@ -22,7 +22,7 @@ storiesOf('Text', module)
     <Story>
       <UseCase text="plain">
         {ColorsKeys.map((colorKey) => {
-          const props = {[colorKey]: true};
+          const props = { [colorKey]: true };
           return (
             <Text key={colorKey} {...props} style={styles.item}>
               {colorKey}
