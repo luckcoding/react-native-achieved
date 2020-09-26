@@ -7,6 +7,7 @@ export type AuthParamList = {
 export type HomeParamList = {
   Home: undefined;
   Detail: undefined;
+  ScrollView: undefined;
 };
 
 export type ProfileParamList = {

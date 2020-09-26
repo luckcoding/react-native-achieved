@@ -11,6 +11,7 @@ import {
   DetailScreen,
   LoginScreen,
   ProfileScreen,
+  ScrollViewScreen,
 } from '../screens';
 import {
   AuthParamList,
@@ -39,6 +40,7 @@ const HomeNavigator = () => (
   <HomeStack.Navigator headerMode="none">
     <HomeStack.Screen name="Home" component={HomeScreen} />
     <HomeStack.Screen name="Detail" component={DetailScreen} />
+    <HomeStack.Screen name="ScrollView" component={ScrollViewScreen} />
   </HomeStack.Navigator>
 );
 

@@ -11996,6 +11996,13 @@ react-native-swipe-gestures@^1.0.4:
   resolved "https://registry.npm.taobao.org/react-native-swipe-gestures/download/react-native-swipe-gestures-1.0.5.tgz#a172cb0f3e7478ccd681fd36b8bfbcdd098bde7c"
   integrity sha1-oXLLDz50eMzWgf02uL+83QmL3nw=
 
+react-native-swiper@^1.6.0-rc.3:
+  version "1.6.0-rc.3"
+  resolved "https://registry.npm.taobao.org/react-native-swiper/download/react-native-swiper-1.6.0-rc.3.tgz#ece82906d908c6a78a0b75fa41982ffc2cd2fb20"
+  integrity sha1-7OgpBtkIxqeKC3X6QZgv/CzS+yA=
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-tab-view@^2.15.1:
   version "2.15.1"
   resolved "https://registry.npm.taobao.org/react-native-tab-view/download/react-native-tab-view-2.15.1.tgz#cf4df4ffdec504263a2e06a6becd8831b9a19ad9"

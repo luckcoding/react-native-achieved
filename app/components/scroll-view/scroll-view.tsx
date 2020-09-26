@@ -1,4 +1,4 @@
-import React, { forwardRef, memo } from 'react';
+import React, { forwardRef, memo, useCallback, useRef } from 'react';
 import {
   NativeViewGestureHandler,
   PanGestureHandler,
@@ -12,10 +12,10 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { ScrollViewProps } from './scroll-view.props';
-import { Text } from '../text/text';
 import { useGestureHandler } from './helpers';
 import { styles } from './scroll-view.styles';
-import { ViewStyle, I18nManager } from 'react-native';
+import { ViewStyle } from 'react-native';
+import { useLayoutedEffect } from '../../utils/hooks/useLayoutedEffect';
 
 const noop = () => null;
 
@@ -29,15 +29,20 @@ export const ScrollView = memo(
         onMomentumBegin = noop,
         onMomentumEnd = noop,
         horizontal = false,
+        // for refresh
+        isRefreshing,
+        onRefresh,
+        refreshSize = 100,
+        refreshDuration = 1200,
+        refreshTimingConfig,
+        RefreshComponent,
       } = props;
 
       const scrollOffset = useSharedValue(0);
 
       const scrollHandler = useAnimatedScrollHandler({
         onScroll: (event) => {
-          scrollOffset.value = horizontal
-            ? event.contentOffset.x
-            : event.contentOffset.y;
+          scrollOffset.value = event.contentOffset.y;
           onScroll(event);
         },
         onBeginDrag,
@@ -50,30 +55,11 @@ export const ScrollView = memo(
       const translateStart = useSharedValue(-1);
       const translateStyle = useAnimatedStyle(() => {
         return {
-          transform: [
-            horizontal
-              ? {
-                  translateX: translate.value,
-                }
-              : {
-                  translateY: translate.value,
-                },
-          ],
+          transform: [{ translateY: translate.value }],
         };
       });
       const refreshViewStyle = useAnimatedStyle(() => {
-        return horizontal
-          ? {
-              width: translate.value,
-              top: 0,
-              bottom: 0,
-            }
-          : ({
-              height: translate.value,
-              top: 0,
-              left: 0,
-              right: 0,
-            } as ViewStyle);
+        return { height: translate.value } as ViewStyle;
       });
 
       const [panGestureRef, setPanGestureEnabled] = useGestureHandler<
@@ -83,10 +69,20 @@ export const ScrollView = memo(
         NativeViewGestureHandler
       >();
 
-      const hide = () => {
+      /**
+       * actions
+       */
+      const refreshingTimerRef = useRef<NodeJS.Timer>();
+      const toRelease = useCallback(() => {
+        if (refreshingTimerRef.current) {
+          return;
+        }
         translate.value = withTiming(
           0,
-          { duration: 300, easing: Easing.bezier(0.33, 0.01, 0, 1) },
+          refreshTimingConfig || {
+            duration: 300,
+            easing: Easing.bezier(0.33, 0.01, 0, 1),
+          },
           () => {
             setTimeout(() => {
               setScrollGestureEnabled(true);
@@ -94,55 +90,65 @@ export const ScrollView = memo(
             }, 0);
           },
         );
-      };
+      }, [refreshTimingConfig]);
+
+      const handleToRefresh = useCallback(
+        (callback?: (isCancelled: boolean) => void) => {
+          translate.value = withTiming(
+            refreshSize,
+            refreshTimingConfig || {
+              duration: 300,
+              easing: Easing.bezier(0.33, 0.01, 0, 1),
+            },
+            callback,
+          );
+        },
+        [refreshTimingConfig],
+      );
+
+      const toRefresh = useCallback(() => {
+        clearTimeout(refreshingTimerRef.current);
+        handleToRefresh(() => {
+          refreshingTimerRef.current = setTimeout(() => {
+            refreshingTimerRef.current = undefined;
+            !isRefreshing && toRelease();
+          }, refreshDuration);
+        });
+      }, [isRefreshing, refreshDuration]);
+
+      // after scollview mounted, set animation
+      const onLayout = useLayoutedEffect(() => {
+        isRefreshing ? toRefresh() : toRelease();
+      }, [isRefreshing]);
 
       const onGestureEvent = useAnimatedGestureHandler({
         onActive: (event) => {
-          console.log(scrollOffset.value);
-          if (scrollOffset.value > 0) {
+          const translationValue = event.translationY;
+          if (scrollOffset.value > 0 || translationValue <= 0) {
             return null;
           }
-
-          const translation = horizontal
-            ? event.translationX
-            : event.translationY;
-
-          console.log(translation);
-
-          if (I18nManager.isRTL) {
-            if (translation >= 0) {
-              return null;
-            }
-          } else {
-            if (translation <= 0) {
-              return null;
-            }
-          }
-
-          console.log(translation);
 
           if (translateStart.value !== -1) {
             translate.value = Math.max(
               0,
-              (translation - translateStart.value) / 2,
+              (translationValue - translateStart.value) / 2,
             );
             setScrollGestureEnabled(false);
           } else {
-            translateStart.value = translation;
+            translateStart.value = translationValue;
           }
         },
         onEnd: () => {
-          // setPanGestureEnabled(false)
-          if (translate.value >= 100) {
-            translate.value = withTiming(
-              100,
-              { duration: 300, easing: Easing.bezier(0.33, 0.01, 0, 1) },
-              () => {
-                setTimeout(hide, 1200);
-              },
-            );
+          setPanGestureEnabled(false);
+          if (translate.value >= refreshSize) {
+            if (typeof onRefresh === 'function') {
+              handleToRefresh();
+              onRefresh();
+            } else {
+              toRelease();
+            }
           } else {
-            hide();
+            toRelease();
           }
           translateStart.value = -1;
         },
@@ -153,10 +159,12 @@ export const ScrollView = memo(
           ref={panGestureRef}
           simultaneousHandlers={scrollGestureRef}
           onGestureEvent={onGestureEvent}
+          activeOffsetX={10000}
+          activeOffsetY={10}
         >
-          <Animated.View>
+          <Animated.View style={{ flex: 1 }}>
             <Animated.View style={[styles.refreshView, refreshViewStyle]}>
-              <Text>刷新</Text>
+              {typeof RefreshComponent === 'function' && RefreshComponent()}
             </Animated.View>
             <NativeViewGestureHandler
               ref={scrollGestureRef}
@@ -164,6 +172,7 @@ export const ScrollView = memo(
               disallowInterruption
             >
               <Animated.ScrollView
+                onLayout={onLayout}
                 style={translateStyle}
                 bounces={false}
                 ref={ref}

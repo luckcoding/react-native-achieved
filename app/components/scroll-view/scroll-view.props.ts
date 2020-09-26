@@ -2,6 +2,7 @@ import {
   NativeScrollEvent,
   ScrollViewProps as RNScrollViewProps,
 } from 'react-native';
+import Animated from 'react-native-reanimated';
 
 export interface ScrollViewProps
   extends Omit<
@@ -11,6 +12,7 @@ export interface ScrollViewProps
     | 'onScrollEndDrag'
     | 'onMomentumScrollBegin'
     | 'onMomentumScrollEnd'
+    | 'refreshControl'
   > {
   onScroll?: (event: NativeScrollEvent) => void;
   onBeginDrag?: (event: NativeScrollEvent) => void;
@@ -18,4 +20,10 @@ export interface ScrollViewProps
   onMomentumBegin?: (event: NativeScrollEvent) => void;
   onMomentumEnd?: (event: NativeScrollEvent) => void;
   children?: React.ReactNode;
+  isRefreshing?: boolean;
+  onRefresh?: () => void;
+  RefreshComponent?: () => React.ReactNode;
+  refreshSize?: number;
+  refreshDuration?: number;
+  refreshTimingConfig?: Animated.WithTimingConfig;
 }
