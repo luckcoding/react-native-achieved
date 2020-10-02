@@ -6,3 +6,4 @@ require('../app/components/dropdown/dropdown.story');
 require('../app/components/message/message.story');
 require('../app/components/action-sheet/action-sheet.story');
 require('../app/components/image/image.story');
+require('../app/components/tooltip/tooltip.story');

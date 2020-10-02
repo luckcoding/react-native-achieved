@@ -25,18 +25,28 @@ export const flattenStyle = <T extends {}>(style: StyleProp<T>): T => {
   }
 };
 
-export const measure = (
-  node: number,
-): Promise<{
+export interface MeasuredResult {
   x: number;
   y: number;
   width: number;
   height: number;
   pageX: number;
   pageY: number;
-}> =>
+}
+
+export const measure = (node: number): Promise<MeasuredResult> =>
   new Promise((resolve) => {
     UIManager.measure(node, (x, y, width, height, pageX, pageY) => {
       resolve({ x, y, width, height, pageX, pageY });
     });
+  });
+
+export const measureInWindow = (node: number) =>
+  new Promise((resolve) => {
+    UIManager.measureInWindow(
+      node,
+      (x: number, y: number, width: number, height: number) => {
+        resolve({ x, y, width, height });
+      },
+    );
   });

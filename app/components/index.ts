@@ -10,5 +10,6 @@ export * from './scrolling/scrolling';
 export * from './sibling/sibling';
 export * from './text/text';
 export * from './text-input/text-input';
+export * from './tooltip/tooltip';
 export * from './touchable/touchable';
 export * from './view/view';
