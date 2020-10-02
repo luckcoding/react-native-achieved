@@ -9,10 +9,9 @@ import Animated, {
   useAnimatedScrollHandler,
   useAnimatedStyle,
   useSharedValue,
-  withTiming,
 } from 'react-native-reanimated';
 import { ScrollViewProps } from './scroll-view.props';
-import { useGestureHandler } from './helpers';
+import { useGestureHandler, withAsyncTiming } from './helpers';
 import { styles } from './scroll-view.styles';
 import { ViewStyle } from 'react-native';
 import { useLayoutedEffect } from '../../utils/hooks/useLayoutedEffect';
@@ -52,7 +51,6 @@ export const ScrollView = memo(
       });
 
       const translate = useSharedValue(0);
-      const translateStart = useSharedValue(-1);
       const translateStyle = useAnimatedStyle(() => {
         return {
           transform: [{ translateY: translate.value }],
@@ -73,48 +71,38 @@ export const ScrollView = memo(
        * actions
        */
       const refreshingTimerRef = useRef<NodeJS.Timer>();
-      const toRelease = useCallback(() => {
+      const toRelease = useCallback(async () => {
         if (refreshingTimerRef.current) {
           return;
         }
-        translate.value = withTiming(
+        await withAsyncTiming(
+          translate,
           0,
           refreshTimingConfig || {
             duration: 300,
             easing: Easing.bezier(0.33, 0.01, 0, 1),
           },
-          () => {
-            setTimeout(() => {
-              setScrollGestureEnabled(true);
-              setPanGestureEnabled(true);
-            }, 0);
-          },
         );
+        setScrollGestureEnabled(true);
+        setPanGestureEnabled(true);
       }, [refreshTimingConfig]);
 
-      const handleToRefresh = useCallback(
-        (callback?: (isCancelled: boolean) => void) => {
-          translate.value = withTiming(
-            refreshSize,
-            refreshTimingConfig || {
-              duration: 300,
-              easing: Easing.bezier(0.33, 0.01, 0, 1),
-            },
-            callback,
-          );
-        },
-        [refreshTimingConfig],
-      );
-
-      const toRefresh = useCallback(() => {
+      const toRefresh = useCallback(async () => {
         clearTimeout(refreshingTimerRef.current);
-        handleToRefresh(() => {
-          refreshingTimerRef.current = setTimeout(() => {
-            refreshingTimerRef.current = undefined;
-            !isRefreshing && toRelease();
-          }, refreshDuration);
-        });
-      }, [isRefreshing, refreshDuration]);
+        await withAsyncTiming(
+          translate,
+          refreshSize,
+          refreshTimingConfig || {
+            duration: 300,
+            easing: Easing.bezier(0.33, 0.01, 0, 1),
+          },
+        );
+
+        refreshingTimerRef.current = setTimeout(() => {
+          refreshingTimerRef.current = undefined;
+          !isRefreshing && toRelease();
+        }, refreshDuration);
+      }, [isRefreshing, refreshDuration, refreshTimingConfig]);
 
       // after scollview mounted, set animation
       const onLayout = useLayoutedEffect(() => {
@@ -128,29 +116,19 @@ export const ScrollView = memo(
             return null;
           }
 
-          if (translateStart.value !== -1) {
-            translate.value = Math.max(
-              0,
-              (translationValue - translateStart.value) / 2,
-            );
-            setScrollGestureEnabled(false);
-          } else {
-            translateStart.value = translationValue;
-          }
+          translate.value = Math.floor(translationValue / 2);
         },
         onEnd: () => {
           setPanGestureEnabled(false);
-          if (translate.value >= refreshSize) {
-            if (typeof onRefresh === 'function') {
-              handleToRefresh();
-              onRefresh();
-            } else {
-              toRelease();
-            }
+          if (
+            translate.value >= refreshSize &&
+            typeof onRefresh === 'function'
+          ) {
+            toRefresh();
+            onRefresh();
           } else {
             toRelease();
           }
-          translateStart.value = -1;
         },
       });
 
@@ -160,7 +138,7 @@ export const ScrollView = memo(
           simultaneousHandlers={scrollGestureRef}
           onGestureEvent={onGestureEvent}
           activeOffsetX={10000}
-          activeOffsetY={10}
+          activeOffsetY={20}
         >
           <Animated.View style={{ flex: 1 }}>
             <Animated.View style={[styles.refreshView, refreshViewStyle]}>

@@ -50,6 +50,7 @@ const SecondRoute = () => {
       setIsRefreshing(false);
     }
   }, [isRefreshing]);
+
   return (
     <ScrollView
       isRefreshing={isRefreshing}

@@ -3,6 +3,7 @@ import { LayoutChangeEvent } from 'react-native';
 
 type LayoutedEffectCallback = (event: LayoutChangeEvent) => void | undefined;
 
+// effect only run affter view mounted，
 export function useLayoutedEffect(
   effect: LayoutedEffectCallback,
   deps: DependencyList,
@@ -21,10 +22,6 @@ export function useLayoutedEffect(
 
   useEffect(() => {
     state.mounted && effect(state.event);
-  }, []);
-
-  useEffect(() => {
-    taskEffectRef.current = effect;
   }, deps);
 
   return onLayout;
