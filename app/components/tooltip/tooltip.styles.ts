@@ -11,8 +11,10 @@ export const styles = StyleSheet.create({
       height: 5,
     },
     shadowColor: '#002875',
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.2,
     shadowRadius: 25,
     elevation: 1,
+    borderRadius: 4,
+    overflow: 'hidden',
   },
 });

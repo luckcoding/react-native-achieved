@@ -1,4 +1,4 @@
-import React, { forwardRef, memo, useCallback, useRef } from 'react';
+import React, { forwardRef, memo, useCallback, useEffect, useRef } from 'react';
 import {
   NativeViewGestureHandler,
   PanGestureHandler,
@@ -14,7 +14,6 @@ import { ScrollViewProps } from './scroll-view.props';
 import { useGestureHandler, withAsyncTiming } from './helpers';
 import { styles } from './scroll-view.styles';
 import { ViewStyle } from 'react-native';
-import { useLayoutedEffect } from '../../utils/hooks/useLayoutedEffect';
 
 const noop = () => null;
 
@@ -105,7 +104,7 @@ export const ScrollView = memo(
       }, [isRefreshing, refreshDuration, refreshTimingConfig]);
 
       // after scollview mounted, set animation
-      const onLayout = useLayoutedEffect(() => {
+      const onLayout = useEffect(() => {
         isRefreshing ? toRefresh() : toRelease();
       }, [isRefreshing]);
 
@@ -150,7 +149,6 @@ export const ScrollView = memo(
               disallowInterruption
             >
               <Animated.ScrollView
-                onLayout={onLayout}
                 style={translateStyle}
                 bounces={false}
                 ref={ref}
